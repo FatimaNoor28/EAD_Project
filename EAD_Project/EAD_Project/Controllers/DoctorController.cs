@@ -10,10 +10,10 @@ namespace EAD_Project.Controllers
             return View("DoctortSignUp");
         }
         [HttpPost]
-        public IActionResult PatientSignUp(int username, string password)
+      /*  public IActionResult PatientSignUp(int username, string password)
         {
-            PatientRepository pr = new PatientRepository();
-            if (pr.SignUpPatient(username, password))
+          *//*  PatientRepository pr = new PatientRepository();
+            if (pr.SignUpPatient(,username, password))
             {
                 ViewData["Msg"] = "You are Signed Up Successfully,LogIn to continue";
                 return View("PatientLogin");
@@ -21,8 +21,8 @@ namespace EAD_Project.Controllers
             else
             {
                 return View("UnsuccessfulSignUp");
-            }
-        }
+            }*//*
+        }*/
         [HttpGet]
         public IActionResult PatientLogin()
         {

@@ -14,10 +14,8 @@ public partial class Appointment
     public string  Date { get; set; }
 
     public string time { get; set; }
-    public string PatientCNIC { get; set; }
 
     public string? PhoneNo { get; set; }
 
-    public string? Department { get; set; }
 
 }

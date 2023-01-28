@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Server.HttpSys;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Numerics;
 
@@ -16,24 +17,40 @@ namespace EAD_Project.Models
 
             return true;
         }
-        public Patient find_Patient(string username, string password)
+        public int find_Patient(string username, string password)
         {
 
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
-            Patient p = (Patient)db.Patients.Select(p => p).Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password));
-            return p;
+            var p = db.Patients.Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password)).Select(c =>c.Id).FirstOrDefault();
+           /* int p = System.Convert.ToInt32( db.Patients.Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password)).Select(p=>p.Id));*/
+            return (int)p;
 
     
         }
-        public bool SignUpPatient(int username, string password)
+        public bool SignUpPatient(string CNIC,string  username, string password)
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
             Patient patient = new Patient();
             //patient.PatientId = username;
-            patient.Password = password;
-            db.Patients.Add(patient);
-            db.SaveChanges();
-            return (!db.Patients.Where(x => (x.CNIC.Equals(username)) && x.Password.Equals(password)).ToList().IsNullOrEmpty());
+            if (db.Patients.Where(x => (x.CNIC.Equals(CNIC)) && x.Password.Equals(password)).ToList().IsNullOrEmpty())
+            {
+                patient.Password = password;
+                patient.Name = username;
+                patient.CNIC = CNIC;
+                db.Patients.Add(patient);
+                if (db.SaveChanges()==1) {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            else {
+                return false;
+            }
+            
         }
 
         public List<Patient> GetAllAppointments(string username)

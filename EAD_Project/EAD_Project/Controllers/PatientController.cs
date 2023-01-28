@@ -10,9 +10,9 @@ namespace EAD_Project.Controllers
             return View("PatientSignUp");
         }
         [HttpPost]
-        public IActionResult PatientSignUp(int username, string password) {
+        public IActionResult PatientSignUp(string CNIC,string username, string password) {
             PatientRepository pr = new PatientRepository();
-            if (pr.SignUpPatient(username, password))
+            if (pr.SignUpPatient(CNIC,username, password))
             {
                 ViewData["Msg"] = "You are Signed Up Successfully,LogIn to continue";
                 return View("PatientLogin");
@@ -35,10 +35,10 @@ namespace EAD_Project.Controllers
 
             if ((pr.Authenticate(username, password)))
             {
-                Patient p =  pr.find_Patient( username,  password);
-                HttpContext.Response.Cookies.Append("Cookie", p.Id.ToString());
-               /* List<Patient> patients = new List<Patient>();
-                
+                int p =  pr.find_Patient( username,  password);
+                HttpContext.Response.Cookies.Append("Cookie", p.ToString());
+              /*  List<Patient> patients = new List<Patient>();
+
                 patients = pr.GetAllAppointments(username);
                 MakeAppointment(patients);*/
 
