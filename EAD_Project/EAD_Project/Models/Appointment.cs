@@ -11,8 +11,9 @@ public partial class Appointment
 
     public int? PatientId { get; set; }
 
-    public DateTime Date { get; set; }
+    public string  Date { get; set; }
 
+    public string time { get; set; }
     public string PatientCNIC { get; set; }
 
     public string? PhoneNo { get; set; }
