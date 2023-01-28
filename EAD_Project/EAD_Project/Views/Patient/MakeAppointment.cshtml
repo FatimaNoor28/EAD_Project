@@ -54,13 +54,13 @@
                 <div class="col-md-4 form-group">
                     <input type="text" pattern="[A-Za-z]+" name="name" class="form-control" id="name" placeholder="Your Name" title="Please enter at least 4 chars" required>
                 </div>
-                <!-- CNIC -->
+               @* <!-- CNIC -->
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                     <input type="text" pattern="^[0-9]{5}-[0-9]{7}-[0-9]{1}$" class="form-control" title="Type your CNIC like 12345-1234567-1" name="CNIC" id="CNIC" placeholder="Your CNIC" required>
                     <!-- data-msg="Please enter a valid email" -->
                     <!-- data-rule="email" -->
                     <!-- <div class="validate"></div> -->
-                </div>
+                </div>*@
                 <!-- Phone -->
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" pattern="[0-9]{4}-[0-9]{7}" title="Type your phone number like 0312-1234567">
@@ -73,7 +73,7 @@
                     <input type="datetime" name="date" required pattern="\d{2}-\d{2}-\d{4}" class="form-control datepicker" id="date" placeholder="Appointment Date (dd-mm-yyyy)">
                     <!-- <div class="validate"></div> -->
                 </div>
-                <!-- department -->
+                @*<!-- department -->
                 <div class="col-md-4 form-group mt-3">
                     <select name="department" id="department" class="form-select">
                         <option value="">Select Department</option>
@@ -82,14 +82,14 @@
                         <option value="Department 3">Department 3</option>
                     </select>
                     <!-- <div class="validate"></div> -->
-                </div>
+                </div>*@
                 <!-- doctor -->
                 <div class="col-md-4 form-group mt-3">
                     <select name="doctor" id="doctor" class="form-select">
                         <option value="">Select Doctor</option>
-                        <option value="Doctor 1">Doctor 1</option>
-                        <option value="Doctor 2">Doctor 2</option>
-                        <option value="Doctor 3">Doctor 3</option>
+                        <option value="Dr Shagufta">Dr Shagufta </option>
+                        <option value="Dr Farzana">Dr Farzana </option>
+                        <option value="Dr Maryam">Dr Maryam </option>
                     </select>
                     <!-- <div class="validate"></div> -->
                 </div>
