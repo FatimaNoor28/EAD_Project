@@ -69,11 +69,11 @@ namespace EAD_Project.Models
 
             return patients;
         }
-        public Patient MakeAppointment(string name, string CNIC, string phone, string date,string department, string doctor)
+        public Patient MakeAppointment(int id, string name, string phone, string date, string doctor)
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
-            Patient p  = (Patient)db.Patients.Where(p=>p.CNIC.Equals(CNIC));
-            Appointment a = new Appointment
+            Patient p  = (Patient)db.Patients.Where(p=>p.Id.Equals(id));
+            Appointment a = new Appointment()
             {
                 
             };

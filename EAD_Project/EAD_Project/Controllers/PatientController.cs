@@ -29,18 +29,19 @@ namespace EAD_Project.Controllers
             return View("PatientLogin");
         }
         [HttpPost]
-        public IActionResult PatientLogin(string username, string password)
+        public IActionResult PatientLogin(string CNIC, string password)
         {
             PatientRepository pr = new PatientRepository();
 
-            if ((pr.Authenticate(username, password)))
+            if ((pr.Authenticate(CNIC, password)))
             {
-                int p =  pr.find_Patient( username,  password);
+                int p =  pr.find_Patient( CNIC,  password);
                 HttpContext.Response.Cookies.Append("Cookie", p.ToString());
-              /*  List<Patient> patients = new List<Patient>();
+                AppointmentRepository ar = new AppointmentRepository();
+                List<Appointment> appointments = new List<Appointment>();
 
-                patients = pr.GetAllAppointments(username);
-                MakeAppointment(patients);*/
+                appointments = ar.GetAppointments(CNIC);
+                MakeAppointment(appointments);
 
                 return View("MakeAppointment");
             }    
@@ -48,16 +49,20 @@ namespace EAD_Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult MakeAppointment(List<Patient> p)
+        public IActionResult MakeAppointment(List<Appointment> p)
         {
             return View(p);
         }
         [HttpPost]
-        public IActionResult Receipt(string name, string CNIC, string phone, string date, string department, string doctor)
+        public IActionResult Receipt(string name, string phone, string date, string doctor)
         {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie"))
+            {
+                int id = Convert.ToInt32( HttpContext.Request.Cookies["Cookie"]);
+                PatientRepository repository = new PatientRepository();
+                Patient p = repository.MakeAppointment(id, name, phone, date, doctor);
 
-            PatientRepository repository = new PatientRepository();
-            Patient p = repository.MakeAppointment(name, CNIC, phone, date, department, doctor);
+            }
             return View(p);
         }
         
