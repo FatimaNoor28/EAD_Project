@@ -11,7 +11,9 @@ public partial class Appointment
 
     public int? PatientId { get; set; }
 
-    public string  Date { get; set; }
+    public int  Date { get; set; }
+
+    public int Month { get; set; }
 
     public string time { get; set; }
 

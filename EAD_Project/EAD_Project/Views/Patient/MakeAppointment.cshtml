@@ -1,16 +1,18 @@
-﻿@using EAD_Project.Models;
-@Model List<Appointment>
+﻿@Model List<EAD_Project.Models.Appointment>
+
 @{
     ViewData["Title"] = "Appointment";
 }
 <section id="appointment" class="appointment section-bg">
     <div class="container">
-        <div class="section-title">
+            <h3 class="text-center text-red pt-5">@ViewData["Appointment"]</h3>
+
+            <div class="section-title">
             <h2>Coming Appointments </h2>
-                @if (Model == null) {
-                    <h3>***No Upcomming Appointments***</h3>
-                }else{
                 <div class="row">
+                    @if(Model!=null){
+                        
+                    
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -34,8 +36,8 @@
                         }
 
                     </table>
+                    }
                 </div>
-                }
             
         </div>
      </div>
@@ -48,11 +50,11 @@
             <h2>Make an Appointment</h2>
             <p>The most valuable thing is your health. So, don't be indifferent towards your health. When it comes to our health, a good healthcare plan is very important for all individuals. So, make an appointment now.</p>
         </div>
-        <form method="post" action="/Patient/Receipt">
+        <form method="post" action="/Patient/MakeAppointment">
             <div class="row">
                 <!-- Name -->
                 <div class="col-md-4 form-group">
-                        <input type="text" pattern="/^[a-zA-Z ]*$/+" name="name" class="form-control" id="name" placeholder="Your Name" title="Please enter at least 4 chars" required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" title="Please enter at least 4 chars" required>
                 </div>
                @* <!-- CNIC -->
                 <div class="col-md-4 form-group mt-3 mt-md-0">
@@ -70,9 +72,14 @@
             <div class="row">
                 <!-- Date -->
                 <div class="col-md-4 form-group mt-3">
-                    <input type="datetime" name="date" required pattern="\d{2}-\d{2}-\d{4}" class="form-control datepicker" id="date" placeholder="Appointment Date (dd-mm-yyyy)">
+                        <input type="datetime" name="date" required pattern="[0-9]{2}" class="form-control datepicker" id="date" placeholder="Appointment Date (dd)">
                     <!-- <div class="validate"></div> -->
                 </div>
+                    <div class="col-md-4 form-group mt-3">
+                        <input type="datetime" name="month" required pattern="[0-9]{2}" class="form-control datepicker" id="month" placeholder="Appointment Month (mm)">
+                        <!-- <div class="validate"></div> -->
+                    </div>
+
                 @*<!-- department -->
                 <div class="col-md-4 form-group mt-3">
                     <select name="department" id="department" class="form-select">
