@@ -3510,19 +3510,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Solution Technology\\.nuget\\packages\\": {}
+    "C:\\Users\\hasee\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Solution Technology\\source\\EAD_Project\\EAD_Project\\EAD_Project\\EAD_Project.csproj",
+      "projectUniqueName": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\EAD_Project.csproj",
       "projectName": "EAD_Project",
-      "projectPath": "C:\\Users\\Solution Technology\\source\\EAD_Project\\EAD_Project\\EAD_Project\\EAD_Project.csproj",
-      "packagesPath": "C:\\Users\\Solution Technology\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Solution Technology\\source\\EAD_Project\\EAD_Project\\EAD_Project\\obj\\",
+      "projectPath": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\EAD_Project.csproj",
+      "packagesPath": "C:\\Users\\hasee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Solution Technology\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hasee\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3584,7 +3584,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

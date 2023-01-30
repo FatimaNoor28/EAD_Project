@@ -1,5 +1,6 @@
 ﻿using EAD_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EAD_Project.Controllers
 {
@@ -37,9 +38,12 @@ namespace EAD_Project.Controllers
                 //CookieOptions option = new CookieOptions();
                 //option.Expires=ses
                 int p = pr.find_Patient(CNIC, password);
+                string pname = pr.find_PatientName(CNIC, password);
+
                    HttpContext.Response.Cookies.Append("Cookie", p.ToString());
                    HttpContext.Response.Cookies.Append("UserType", "Patient");
-                   
+                HttpContext.Response.Cookies.Append("UserName", pname);
+
 
                 AppointmentRepository ar = new AppointmentRepository();
                    List<Appointment> appointments = new List<Appointment>();
@@ -97,7 +101,14 @@ namespace EAD_Project.Controllers
         public IActionResult MakeAppointment(List<Appointment> p)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType")&&  (HttpContext.Request.Cookies["UserType"].Equals("Patient"))) {
+                AppointmentRepository ar = new AppointmentRepository();
 
+                int id = System.Convert.ToInt32( HttpContext.Request.Cookies["Cookie"]);
+                if (p.IsNullOrEmpty())
+                {
+                    p = ar.GetAppointmentWithId(id);
+                }
+                ViewData["PatientUserName"] = HttpContext.Request.Cookies["UserName"];
                 return View(p);
             }
             else {
@@ -115,6 +126,7 @@ namespace EAD_Project.Controllers
             {
                 if (HttpContext.Request.Cookies["UserType"].Equals("Patient"))
                 {
+                    ViewBag.name = "Patient";
                     int id = Convert.ToInt32(HttpContext.Request.Cookies["Cookie"]);
                     AppointmentRepository repository = new AppointmentRepository();
                     if (repository.MakeAppointment(id, name, phone, date, month, doctor))

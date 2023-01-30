@@ -33,6 +33,9 @@ namespace EADProject.Migrations
                     b.Property<string>("CNIC")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,12 +87,15 @@ namespace EADProject.Migrations
                     b.Property<int?>("ApointmentLimitPerDay")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Appointments")
-                        .HasColumnType("int");
+                    b.Property<string>("AppointmentId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CNIC")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CurrentAppointments")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

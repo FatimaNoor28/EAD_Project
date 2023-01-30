@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Globalization;
 using System.Numerics;
 
 namespace EAD_Project.Models
@@ -27,12 +28,18 @@ namespace EAD_Project.Models
 
     
         }
+        public string find_PatientName(string username, string password)
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            var  p = db.Patients.Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password)).Select(c => c.Name).FirstOrDefault();
+            return p;
+        }
         public bool SignUpPatient(string CNIC,string  username, string password)
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
             Patient patient = new Patient();
             //patient.PatientId = username;
-            if (db.Patients.Where(x => (x.CNIC.Equals(CNIC)) && x.Password.Equals(password)).ToList().IsNullOrEmpty())
+            if (db.Patients.Where(x => (x.CNIC.Equals(CNIC))).ToList().IsNullOrEmpty())
             {
                 patient.Password = password;
                 patient.Name = username;

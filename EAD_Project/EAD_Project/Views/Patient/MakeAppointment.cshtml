@@ -1,4 +1,4 @@
-﻿@Model List<EAD_Project.Models.Appointment>
+﻿@model List<EAD_Project.Models.Appointment>
 
 @{
     ViewData["Title"] = "Appointment";
@@ -112,6 +112,12 @@
             </div>
             <div class="text-center"><input type="submit" value="Make an Appointment"></div>
         </form>
+        
     </div>
 </section>
 <!-- End Appointment -->
+@section LoginReplacement
+    {
+               
+                           <h>  @ViewData["PatientUserName"] </h>
+     }

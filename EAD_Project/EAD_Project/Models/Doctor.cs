@@ -12,8 +12,9 @@ public partial class Doctor
     public string? Password { get; set; }
 
     public string? Name { get; set; }
-
-    public int? Appointments { get; set; }
+    
+    public string? AppointmentId { get; set; }
+    public int? CurrentAppointments { get; set; }
 
     public int? ApointmentLimitPerDay { get; set; }
 }

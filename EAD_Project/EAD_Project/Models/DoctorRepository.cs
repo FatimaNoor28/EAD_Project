@@ -21,7 +21,7 @@ namespace EAD_Project.Models
             
             if (db.Doctors.Where(x => (x.CNIC.Equals(CNIC)) && x.Password.Equals(password)).ToList().IsNullOrEmpty())
             {
-                dr.Appointments = 0;
+                dr.CurrentAppointments = 0;
                 dr.Password = password;
                 dr.Name = username;
                 dr.CNIC = CNIC;

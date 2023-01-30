@@ -1,5 +1,6 @@
 ﻿using EAD_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 namespace EAD_Project.Controllers
 {
@@ -11,10 +12,10 @@ namespace EAD_Project.Controllers
             return View("SignUpAdmin");
         }
         [HttpPost]
-        public IActionResult SignUpAdmin(string CNIC, string password)
+        public IActionResult SignUpAdmin(string CNIC,string Name, string password)
         {
             AdminRepository ar = new AdminRepository();
-            if (ar.SignUpAdmin(CNIC, password))
+            if (ar.SignUpAdmin(CNIC,Name, password))
             {
                 ViewData["Msg"] = "You are Siggned Up Successfully,LogIn to continue";
                 return View("Login");
@@ -27,6 +28,7 @@ namespace EAD_Project.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+
             return View("Login");
         }
         [HttpPost]
@@ -37,8 +39,12 @@ namespace EAD_Project.Controllers
             if (ar.Authenticate(CNIC, password))
             {
              var   a=ar.FindAdminId(CNIC, password);
+                var A_name = ar.find_AdminName(CNIC, password);
                 HttpContext.Response.Cookies.Append("Cookie", a.ToString());
                 HttpContext.Response.Cookies.Append("UserType", "Admin");
+                HttpContext.Response.Cookies.Append("AdminUserName", A_name);
+                ViewData["AdminUserName"] = A_name;
+
                 return View("Index");
             }
                 
@@ -50,6 +56,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
 
                 return View("AddPatient");
             }
@@ -79,6 +86,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
 
                 return View("UpdatePatient");
             }
@@ -94,7 +102,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-
+               
                 return View();
             }
             else
@@ -108,7 +116,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
                 return View("AssignRoom");
             }
             else
@@ -123,6 +131,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+               
 
                 return View();
             }
@@ -137,7 +146,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
                 return View("DeletePatient");
             }
             else
@@ -152,7 +161,7 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-
+               
                 return View();
             }
             else

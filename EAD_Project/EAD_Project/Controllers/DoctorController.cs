@@ -33,6 +33,9 @@ namespace EAD_Project.Controllers
             if (dr.Authenticate(CNIC, password))
             {
                 Doctor d = dr.findDoctor(CNIC, password);
+                HttpContext.Response.Cookies.Append("Cookie",d.DoctorId.ToString());
+                HttpContext.Response.Cookies.Append("UserType", "Doctor");
+                
                 return View("Index", d);
             }
                 

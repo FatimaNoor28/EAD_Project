@@ -25,9 +25,80 @@
 </head>
 
 <body>
-       <!-- nav bar start -->
-       <header>
-    <nav class="navbar navbar-expand-lg bg-light">
+    @if (IsSectionDefined("LoginReplacement"))
+    {
+                   <!-- nav bar start -->
+           <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <img src="~/Media/medical-suitecase-icon.png"  width="50" height="50" >
+
+            <a class="navbar-brand" href="#"><span class="fw-bolder">MEDCARE</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link scrollto" aria-current="page" href="#hero" >Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Departments
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Cardiology</a>
+                            <a class="dropdown-item" href="#">Neurology</a>
+                            <a class="dropdown-item" href="#">Hepatology</a>
+                            <a class="dropdown-item" href="#">Pediatrics</a>
+                            <a class="dropdown-item" href="#">ENT</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">More</a>
+                        </div>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Services</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <li class="nav-item dropdown">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#services">@RenderSection("LoginReplacement",false)</a>
+                            </li>
+                          
+                                @* @RenderSection("LoginReplacement",required:false)*@
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+
+                            @*@if(IsSectionDefined("CNIC")){
+                        <div>
+                        @RenderSection("CNIC",false);
+                        </div>
+                    }
+                    @else{*@
+
+
+
+                   </ul>
+
+
+            </div>
+
+        </nav>
+        </header>
+    }
+    else
+    {
+        <!-- nav bar start -->
+        <header>
+            <nav class="navbar navbar-expand-lg bg-light">
         <img src="~/Media/medical-suitecase-icon.png"  width="50" height="50" >
 
         <a class="navbar-brand" href="#"><span class="fw-bolder">MEDCARE</span></a>
@@ -40,7 +111,7 @@
                 <li class="nav-item">
                     <a class="nav-link scrollto" aria-current="page" href="#hero" >Home</a>
                 </li>
-               
+
                 <li class="nav-item dropdown">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -61,8 +132,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
                     </li>
-                         <li class="nav-item dropdown">
+
                     <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
@@ -74,22 +147,23 @@
                             <a class="dropdown-item" href="/Patient/PatientLogin">Patient</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/Doctor/Login">Doctor</a>
-                            
+
                         </div>
+                            @* @RenderSection("LoginReplacement",required:false)*@
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
 
-                    @*@if(IsSectionDefined("CNIC")){
+                        @*@if(IsSectionDefined("CNIC")){
                         <div>
                         @RenderSection("CNIC",false);
                         </div>
                     }
                     @else{*@
-                   
-                    
+
+
 
                </ul>
 
@@ -98,6 +172,7 @@
 
     </nav>
     </header>
+    }
     <div>
        
         @RenderBody()

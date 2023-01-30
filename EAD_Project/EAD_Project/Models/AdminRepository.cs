@@ -22,23 +22,31 @@ namespace EAD_Project.Models
 
 
         }
-        public bool SignUpAdmin(string CNIC, string password)
+        public string find_AdminName(string username, string password)
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
-            Admin admin = new Admin();
-            //int? id =db.Admins.Max(a=>(int?)a.AdminId);
-            //if (id == null) {
-            //    admin.AdminId = 1;
-            //} else
-            //{
-            //    admin.AdminId = (int)id + 1;
-            //}
-            
+            var p = db.Admins.Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password)).Select(c => c.Name).FirstOrDefault();
+            return p;
+        }
+        public bool SignUpAdmin(string CNIC,string Name, string password)
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            if (db.Admins.Where(x => x.CNIC.Equals(CNIC)).ToList().IsNullOrEmpty())
+            {
+                Admin admin = new Admin();
 
-            admin.CNIC = CNIC;
-            admin.Password = password;
-            db.Admins.Add(admin);
-            db.SaveChanges();
+
+                admin.Name = Name;
+                admin.CNIC = CNIC;
+                admin.Password = password;
+                db.Admins.Add(admin);
+                db.SaveChanges();
+            }
+            else
+            {
+                return false;
+            }
+           
             return (!db.Admins.Where(x => x.CNIC.Equals(CNIC) && x.Password.Equals(password)).ToList().IsNullOrEmpty());
 
         }
