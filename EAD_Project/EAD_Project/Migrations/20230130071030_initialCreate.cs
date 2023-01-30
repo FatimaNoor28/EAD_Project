@@ -5,7 +5,7 @@
 namespace EADProject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate5 : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,8 +16,8 @@ namespace EADProject.Migrations
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CNIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CNIC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,10 +48,11 @@ namespace EADProject.Migrations
                 {
                     DoctorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CNIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Appointments = table.Column<int>(type: "int", nullable: true),
-                    ApointmentLimit = table.Column<int>(type: "int", nullable: true)
+                    ApointmentLimitPerDay = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

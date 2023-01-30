@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EADProject.Migrations
 {
     [DbContext(typeof(HospitalManagementSystemContext))]
-    [Migration("20230129155612_InitialCreate5")]
-    partial class InitialCreate5
+    [Migration("20230130071030_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,11 +34,9 @@ namespace EADProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
 
                     b.Property<string>("CNIC")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AdminId");
@@ -86,11 +84,15 @@ namespace EADProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
 
-                    b.Property<int?>("ApointmentLimit")
+                    b.Property<int?>("ApointmentLimitPerDay")
                         .HasColumnType("int");
 
                     b.Property<int?>("Appointments")
                         .HasColumnType("int");
+
+                    b.Property<string>("CNIC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
