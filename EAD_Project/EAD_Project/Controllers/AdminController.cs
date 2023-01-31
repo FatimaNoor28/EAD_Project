@@ -68,10 +68,52 @@ namespace EAD_Project.Controllers
 
         }
         [HttpPost]
-        public ViewResult AddPatient(int Id, string Name, string CNIC, string PhoneNum, string Doctor, int RoomNo)
+        public ViewResult AddPatient(/*int Id, string Name,*/ string CNIC, string name, string password, string Doctor/*, int RoomNo*/)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+                PatientRepository pr = new PatientRepository();
+                if(pr.SignUpPatient(CNIC, name, password))
+                    return View("Index");
+            }
+            ViewData["Msg"] = "Login to Access this Page ,Error 404";
+            return View("Login");
+
+        }
+        [HttpGet]
+        public ViewResult FindPatient()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
+
+                return View();
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
+        [HttpPost]
+        public ViewResult FindPatient(int Id)
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                AdminRepository ar = new AdminRepository();
+                Patient p = ar.find_Patient(Id);
+                return View("DisplayPatient",p);
+            }
+            ViewData["Msg"] = "Login to Access this Page ,Error 404";
+            return View("Login");
+        }
+
+        [HttpGet]
+        public ViewResult DisplayPatient()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
 
                 return View();
             }
@@ -147,7 +189,7 @@ namespace EAD_Project.Controllers
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
                 ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
-                return View("DeletePatient");
+                return View();
             }
             else
             {
@@ -161,14 +203,15 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-               
-                return View();
+                AdminRepository ar = new AdminRepository();
+                Patient p = ar.find_Patient(Id);
+                ar.RemovePatient(Id);
+                if (ar.find_Patient(Id) != null)
+                    return View("Index");
             }
-            else
-            {
-                ViewData["Msg"] = "Login to Access this Page ,Error 404";
-                return View("Login");
-            }
+            ViewData["Msg"] = "Login to Access this Page ,Error 404";
+            return View("Login");
+           
 
         }
     }

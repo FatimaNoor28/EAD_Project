@@ -26,7 +26,7 @@ namespace EAD_Project.Models
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
             var p = db.Admins.Where(a => (a.CNIC.Equals(username)) && a.Password.Equals(password)).Select(c => c.Name).FirstOrDefault();
-            return p;
+            return (string)p;
         }
         public bool SignUpAdmin(string CNIC,string Name, string password)
         {
@@ -49,6 +49,20 @@ namespace EAD_Project.Models
            
             return (!db.Admins.Where(x => x.CNIC.Equals(CNIC) && x.Password.Equals(password)).ToList().IsNullOrEmpty());
 
+        }
+
+        public Patient find_Patient(int id)
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            var p = db.Patients.Where(a => (a.Id==id)).Select(c => c).FirstOrDefault();
+            return (Patient)p;
+        }
+        public void RemovePatient(int id)
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            Patient p = db.Patients.Where(a => (a.Id == id)).Select(c => c).FirstOrDefault();
+            db.Patients.Remove(p);
+            db.SaveChanges();
         }
     }
 }

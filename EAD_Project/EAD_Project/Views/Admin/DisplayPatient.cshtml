@@ -1,0 +1,35 @@
+﻿@model EAD_Project.Model
+
+@{
+    ViewData["Title"] = "Display_Patient's_Record";
+}
+
+<section id="appointment" class="appointment section-bg">
+    <div class="container">
+        <div class="section-title">
+            <h2>Patient's' Record</h2>
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Patient ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">CNIC</th>
+                            <th scope="col">Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">@model.Id</th>
+                            <td>@model.Name</td>
+                            <td>@model.CNIC</td>
+                            <td>@model.Password</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>
