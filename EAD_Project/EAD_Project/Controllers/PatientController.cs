@@ -39,7 +39,7 @@ namespace EAD_Project.Controllers
                 //option.Expires=ses
                 int p = pr.find_Patient(CNIC, password);
                 string pname = pr.find_PatientName(CNIC, password);
-
+                int id = pr.find_Patient(CNIC, password);
                    HttpContext.Response.Cookies.Append("Cookie", p.ToString());
                    HttpContext.Response.Cookies.Append("UserType", "Patient");
                 HttpContext.Response.Cookies.Append("UserName", pname);
@@ -47,8 +47,8 @@ namespace EAD_Project.Controllers
 
                 AppointmentRepository ar = new AppointmentRepository();
                    List<Appointment> appointments = new List<Appointment>();
-
-                   appointments = ar.GetAppointments(CNIC);
+                ViewData["PatientUserName"] = pname;
+                appointments = ar.GetAppointmentWithId(id);
                    MakeAppointment(appointments);
 
                    return View("MakeAppointment");
@@ -58,45 +58,6 @@ namespace EAD_Project.Controllers
             
            
         }
-
-        /* public IActionResult PatientLogin(string CNIC, string password)
-                {
-                    PatientRepository pr = new PatientRepository();
-                    if (HttpContext.Request.Cookies.ContainsKey("UserType")) {
-                        if (HttpContext.Request.Cookies["UserType"].Equals("Patient"))
-                        {
-                            if ((pr.Authenticate(CNIC, password)))
-                            {
-                                int p = pr.find_Patient(CNIC, password);
-                                HttpContext.Response.Cookies.Append("Cookie", p.ToString());
-                                HttpContext.Response.Cookies.Append("UserType", "Patient");
-                                AppointmentRepository ar = new AppointmentRepository();
-                                List<Appointment> appointments = new List<Appointment>();
-
-                                appointments = ar.GetAppointments(CNIC);
-                                MakeAppointment(appointments);
-
-                                return View("MakeAppointment");
-                            }
-                            else
-                            {
-                                return View("LoginUnsuccessful");
-                            }
-
-                        }
-                        else {
-                            ViewData["Msg"] = "You are Not a Patient,Login to Continue";
-                            return View("PatientLogin");
-                        }
-                    }
-                    else
-                    {
-                        ViewData["Msg"] = "No Access! Login First then Continue";
-                        return View("PatientLogin");
-                    }
-
-
-                }*/
         [HttpGet]
         public IActionResult MakeAppointment(List<Appointment> p)
         {
@@ -131,6 +92,7 @@ namespace EAD_Project.Controllers
                     AppointmentRepository repository = new AppointmentRepository();
                     if (repository.MakeAppointment(id, name, phone, date, month, doctor))
                     {
+                        ViewData["PatientUserName"] = HttpContext.Request.Cookies["UserName"];
                         appointments = repository.GetAppointmentWithId(id);
                         MakeAppointment(appointments);
                     }

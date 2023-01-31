@@ -15,7 +15,7 @@ namespace EAD_Project.Models
             //return db.Appointments.Where(p => DbFunctions.TruncateTime(DateTime.ParseExact(p.Date, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture)) >= DbFunctions.TruncateTime(CurrentDate)).ToList();/*.Where(p=> DateOnly.Parse(p.AppointmentDate) >= d )*/;
             int d = Convert.ToInt32(DateTime.Now.ToString("dd"));
             int m = Convert.ToInt32(DateTime.Now.ToString("MM"));
-            return db.Appointments.Where(a => a.Date >= d || a.Month >= m ).ToList();
+            return db.Appointments.Where(a =>  a.Date >= d || a.Month >= m ).ToList();
         }
 
         public List<Appointment> GetAppointmentWithId(int id)
