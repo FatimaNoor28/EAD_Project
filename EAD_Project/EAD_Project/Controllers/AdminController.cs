@@ -206,13 +206,29 @@ namespace EAD_Project.Controllers
                 AdminRepository ar = new AdminRepository();
                 Patient p = ar.find_Patient(Id);
                 ar.RemovePatient(Id);
-                if (ar.find_Patient(Id) != null)
+                if (ar.find_Patient(Id) == null)
                     return View("Index");
             }
             ViewData["Msg"] = "Login to Access this Page ,Error 404";
             return View("Login");
-           
-
         }
+
+        [HttpGet]
+        public ViewResult AllPatients()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
+                AdminRepository ar = new AdminRepository();
+                List<Patient> p = ar.GetAllPatients();
+                return View(p);
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
+
     }
 }

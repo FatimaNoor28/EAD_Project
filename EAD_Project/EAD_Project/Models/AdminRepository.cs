@@ -64,5 +64,11 @@ namespace EAD_Project.Models
             db.Patients.Remove(p);
             db.SaveChanges();
         }
+        public List<Patient> GetAllPatients()
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            List<Patient> p = db.Patients.Where(a => a.Id > 0).ToList();
+            return p;
+        }
     }
 }

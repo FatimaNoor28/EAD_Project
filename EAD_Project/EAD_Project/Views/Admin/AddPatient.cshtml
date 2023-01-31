@@ -1,14 +1,4 @@
-﻿@*@section CNIC{
-    @*<p>HttpContext.Request.Cookies["UserType"]</p>
-    <p>This is a section</p>
-}*@
-<!doctype html>
-<html lang="en">
-
-    <body>
-
-    @*<link rel="stylesheet" href="lib\bootstrap\dist\css\our.css">*@
-
+﻿
     <section id="appointment" class="appointment section-bg">
         <div class="container">
 
@@ -51,6 +41,8 @@
         </div>
     </section>
 
+    @section LoginReplacement
+        {
 
-</body>
-</html>
+        <h>  @ViewData["PatientUserName"] </h>
+        }

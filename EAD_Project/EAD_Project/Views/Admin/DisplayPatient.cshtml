@@ -1,13 +1,13 @@
-﻿@model EAD_Project.Model
+﻿@Model EAD_Project.Model
 
 @{
-    ViewData["Title"] = "Display_Patient's_Record";
+    ViewData["Title"] = "Patient_record";
 }
 
 <section id="appointment" class="appointment section-bg">
     <div class="container">
         <div class="section-title">
-            <h2>Patient's' Record</h2>
+            <h2>Your Record</h2>
             <div class="row">
                 <table class="table table-hover">
                     <thead>
@@ -20,16 +20,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">@model.Id</th>
-                            <td>@model.Name</td>
-                            <td>@model.CNIC</td>
-                            <td>@model.Password</td>
+                            <th scope="row">@Model.Id</th>
+                            <td>@Model.Name</td>
+                            <td>@Model.CNIC</td>
+                            <td>@Model.Password</td>
                         </tr>
                     </tbody>
 
-                </table>
+                    </table>
             </div>
 
         </div>
     </div>
 </section>
+
+@section LoginReplacement
+    {
+
+    <h>  @ViewData["PatientUserName"] </h>
+     }
