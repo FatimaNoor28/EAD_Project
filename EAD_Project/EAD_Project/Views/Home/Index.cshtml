@@ -307,7 +307,7 @@
 }
     </style>
 </head>
- <!-- start hero -->
+<!-- start hero -->
 <link rel="stylesheet" href="~/css/our.css">
     <section name ="hero" id="hero" class="d-flex align-items-center">
         <div class="container " >
@@ -327,7 +327,10 @@
                     <!-- <button type="submit" class="btn btn-primary button">Make Appointment</button> -->
                 </div>
                 <div class="col-3  ">
+                <a href="/Home/Index#departments">
                     <button type="submit" class="btn btn-outline-secondary button1">View Departments</button>
+                </a>
+                   
                 </div>
             </div>
 
@@ -636,4 +639,11 @@
 
       </div>
     </section><!-- End Contact Section -->
+@if (ViewData["PatientUserName"] != null)
+{
+    @section LoginReplacement
+    {
 
+    <h>  @ViewData["PatientUserName"] </h>
+    }
+}

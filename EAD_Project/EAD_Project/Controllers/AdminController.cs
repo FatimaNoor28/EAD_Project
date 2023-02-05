@@ -1,11 +1,17 @@
 ﻿using EAD_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+using System.Diagnostics;
 
 namespace EAD_Project.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IWebHostEnvironment Environment;
+
+        public AdminController(IWebHostEnvironment environment) {
+            Environment = environment;
+        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -228,6 +234,55 @@ namespace EAD_Project.Controllers
                 ViewData["Msg"] = "Login to Access this Page ,Error 404";
                 return View("Login");
             }
+        }
+
+        [HttpGet]
+        public ViewResult uploadPatientReport()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
+                return View();
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
+
+        [HttpPost]
+        public ViewResult uploadPatientReport(List<IFormFile> postedFiles)
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+
+                string wwwPath = this.Environment.WebRootPath;
+                string path = Path.Combine(wwwPath, "Uploads");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                foreach (var file in postedFiles)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var pathWithFileName = Path.Combine(path, fileName);
+                    using (FileStream stream = new FileStream(pathWithFileName, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                        ViewBag.Message = "file uploaded successfully";
+                    }
+                }
+                return View("Index");
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+            //return View();
+
         }
 
     }

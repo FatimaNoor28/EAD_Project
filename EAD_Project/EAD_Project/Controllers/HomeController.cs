@@ -15,9 +15,10 @@ namespace EAD_Project.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType"))
+                ViewData["PatientUserName"] = HttpContext.Request.Cookies["UserName"];
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();

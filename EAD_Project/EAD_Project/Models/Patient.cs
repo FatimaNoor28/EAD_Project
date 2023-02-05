@@ -12,4 +12,6 @@ public partial class Patient
 
     public string? Password { get; set; }
 
+    
+
 }
