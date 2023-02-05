@@ -49,7 +49,7 @@ namespace EAD_Project.Controllers
                    List<Appointment> appointments = ar.GetAppointmentWithId(id);
                 ViewData["PatientUserName"] = pname;
                 //appointments = ar.GetAppointmentWithId(id);
-                   MakeAppointment(appointments);
+                   //MakeAppointment(appointments);
 
                    return View("MakeAppointment",appointments);
               }
@@ -61,36 +61,36 @@ namespace EAD_Project.Controllers
         [HttpGet]
         public IActionResult MakeAppointment(List<Appointment>? p)
         {
-                //if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") ){
-                //    if (HttpContext.Request.Cookies["UserType"].Equals("Patient"))
-                //    {
-                    Console.WriteLine("if part executed");
-                    AppointmentRepository ar = new AppointmentRepository();
+                if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") ){
+                        if (HttpContext.Request.Cookies["UserType"].Equals("Patient"))
+                        {
+                        Console.WriteLine("if part executed");
+                        AppointmentRepository ar = new AppointmentRepository();
 
-                    int id = System.Convert.ToInt32(HttpContext.Request.Cookies["Cookie"]);
-                    if (p?.Any() != true)
-                    {
-                        p = ar.GetAppointmentWithId(id);
-                    }
-                    ViewData["PatientUserName"] = HttpContext.Request.Cookies["UserName"];
+                        int id = System.Convert.ToInt32(HttpContext.Request.Cookies["Cookie"]);
+                            if (p?.Any() != true)
+                            {
+                                p = ar.GetAppointmentWithId(id);
+                            }
+                        ViewData["PatientUserName"] = HttpContext.Request.Cookies["UserName"];
 
-                    return View(p);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("else part executed");
-            //        ViewData["Msg"] = "Login to Access this Page ,Error 404";
-            //        return View("PatientLogin");
-            //    }
-            //}
-            //else {
-            //    Console.WriteLine("else part executed");
-            //    ViewData["Msg"] = "Login to Access this Page ,Error 404";
-            //    return View("PatientLogin");
-            //}
-            //return View("PatientLogin");
-        }
-        [HttpPost]
+                        return View(p);
+                        }   
+                        else
+                        {
+                            Console.WriteLine("else part executed");
+                            ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                            return View("PatientLogin");
+                        }
+                }
+                else {
+                    Console.WriteLine("else part executed");
+                    ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                    return View("PatientLogin");
+                }
+                return View(p);
+            }
+            [HttpPost]
         public IActionResult MakeAppointment(string name, string phone, int date, int month, string doctor)
         {
             Appointment p = null;
