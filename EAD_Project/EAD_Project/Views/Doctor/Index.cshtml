@@ -1,4 +1,5 @@
-﻿@Model EAD_Project.Model
+﻿@*tag helper*@
+@model EAD_Project.Models.Doctor
 
 @{
     ViewData["Title"] = "Doctor";
@@ -23,7 +24,7 @@
                             <th scope="row">@Model.DoctorId</th>
                             <td>@Model.Name</td>
                             <td>@Model.CNIC</td>
-                            <td>@Model.Appointments</td>
+                            <td>@Model.CurrentAppointments</td>
                         </tr>
                     </tbody>
 
