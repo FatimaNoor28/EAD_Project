@@ -5,7 +5,7 @@
                 <h2>Upload Patient's Report</h2>
             </div>
             <form method="post" enctype="multipart/form-data"
-              asp-action="Index" asp-controller="Home">
+              asp-action="uploadPatientReport" asp-controller="Admin">
                 <div class="row form-row" style="padding-left: 13cm;">
                     <div class="col-md-4 form-group mt-3 mt-md-0 ">
             
@@ -13,6 +13,7 @@
                     <input type="file" name="postedFiles" multiple />
                     </div>
                 </div>
+                <input type="text" name="PatientId" id ="PatientId">Patient ID</input>
                 <div class="bttn text-center">
                     <button type="submit">Upload File(s)</button>
                 </div>

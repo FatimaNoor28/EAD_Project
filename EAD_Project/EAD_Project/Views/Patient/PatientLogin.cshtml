@@ -28,9 +28,13 @@
     </div>
 
 </body>
-@section LoginReplacement
+@if (ViewData["PatientUserName"] != null)
+{
+    @section LoginReplacement
     {
 
-                               <h>  @ViewData["PatientUserName"] </h>
+                                   <h>  @ViewData["PatientUserName"] </h>
      }
+
+}
 </html>

@@ -647,3 +647,11 @@
     <h>  @ViewData["PatientUserName"] </h>
     }
 }
+@if (ViewData["AdminUserName"] != null)
+{
+    @section LoginReplacement
+    {
+
+            <h>  @ViewData["AdminUserName"] </h>
+    }
+}

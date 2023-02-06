@@ -130,6 +130,26 @@ namespace EADProject.Migrations
 
                     b.ToTable("Patients");
                 });
+
+            modelBuilder.Entity("EAD_Project.Models.Reports", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -11,6 +11,8 @@ public partial class HospitalManagementSystemContext : DbContext {
     public  DbSet<Doctor> Doctors { get; set; }
 
     public  DbSet<Patient> Patients { get; set; }
+    
+    public DbSet<Reports> Reports { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
        => options.UseSqlServer($"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HospitalManagementSystem;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 }

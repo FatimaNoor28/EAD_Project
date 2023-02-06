@@ -252,11 +252,12 @@ namespace EAD_Project.Controllers
         }
 
         [HttpPost]
-        public ViewResult uploadPatientReport(List<IFormFile> postedFiles)
+        public ViewResult uploadPatientReport(List<IFormFile> postedFiles,int PatientId)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-
+                ReportsRepository repo = new ReportsRepository();
+                ViewData["AdminUserName"]= HttpContext.Request.Cookies["AdminUserName"];
                 string wwwPath = this.Environment.WebRootPath;
                 string path = Path.Combine(wwwPath, "Uploads");
                 if (!Directory.Exists(path))
@@ -266,10 +267,17 @@ namespace EAD_Project.Controllers
 
                 foreach (var file in postedFiles)
                 {
+                    
                     var fileName = Path.GetFileName(file.FileName);
                     var pathWithFileName = Path.Combine(path, fileName);
                     using (FileStream stream = new FileStream(pathWithFileName, FileMode.Create))
                     {
+                        if (!repo.AddReports(pathWithFileName, PatientId))
+                        {
+                            ViewData["Msg"] = "File Not Uploaded";
+                            return View("Index");
+                        }
+                            
                         file.CopyTo(stream);
                         ViewBag.Message = "file uploaded successfully";
                     }
