@@ -9,19 +9,23 @@ namespace EAD_Project.Controllers
     {
         private readonly IWebHostEnvironment Environment;
 
-        public AdminController(IWebHostEnvironment environment) {
+        public AdminController(IWebHostEnvironment environment)
+        {
             Environment = environment;
         }
+
+   
+
         [HttpGet]
         public IActionResult Index()
         {
             return View("SignUpAdmin");
         }
         [HttpPost]
-        public IActionResult SignUpAdmin(string CNIC,string Name, string password)
+        public IActionResult SignUpAdmin(string CNIC, string Name, string password)
         {
             AdminRepository ar = new AdminRepository();
-            if (ar.SignUpAdmin(CNIC,Name, password))
+            if (ar.SignUpAdmin(CNIC, Name, password))
             {
                 ViewData["Msg"] = "You are Siggned Up Successfully,LogIn to continue";
                 return View("Login");
@@ -44,7 +48,7 @@ namespace EAD_Project.Controllers
             AdminRepository ar = new AdminRepository();
             if (ar.Authenticate(CNIC, password))
             {
-             var   a=ar.FindAdminId(CNIC, password);
+                var a = ar.FindAdminId(CNIC, password);
                 var A_name = ar.find_AdminName(CNIC, password);
                 HttpContext.Response.Cookies.Append("Cookie", a.ToString());
                 HttpContext.Response.Cookies.Append("UserType", "Admin");
@@ -53,10 +57,10 @@ namespace EAD_Project.Controllers
 
                 return View("Index");
             }
-                
+
             else return View("UnsuccessfulLogin");
         }
-       
+
         [HttpGet]
         public ViewResult AddPatient()
         {
@@ -79,7 +83,7 @@ namespace EAD_Project.Controllers
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
                 PatientRepository pr = new PatientRepository();
-                if(pr.SignUpPatient(CNIC, name, password))
+                if (pr.SignUpPatient(CNIC, name, password))
                     return View("Index");
             }
             ViewData["Msg"] = "Login to Access this Page ,Error 404";
@@ -108,7 +112,7 @@ namespace EAD_Project.Controllers
             {
                 AdminRepository ar = new AdminRepository();
                 Patient p = ar.find_Patient(Id);
-                return View("DisplayPatient",p);
+                return View("DisplayPatient", p);
             }
             ViewData["Msg"] = "Login to Access this Page ,Error 404";
             return View("Login");
@@ -143,14 +147,14 @@ namespace EAD_Project.Controllers
                 ViewData["Msg"] = "Login to Access this Page ,Error 404";
                 return View("Login");
             }
-            
+
         }
         [HttpPost]
         public ViewResult UpdatePatient(int Id, string Name, string CNIC, string PhoneNum, string Doctor, int RoomNo)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-               
+
                 return View();
             }
             else
@@ -172,14 +176,14 @@ namespace EAD_Project.Controllers
                 ViewData["Msg"] = "Login to Access this Page ,Error 404";
                 return View("Login");
             }
-            
+
         }
         [HttpPost]
         public ViewResult AssignRoom(int Id, int RoomNo)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-               
+
 
                 return View();
             }
@@ -202,7 +206,7 @@ namespace EAD_Project.Controllers
                 ViewData["Msg"] = "Login to Access this Page ,Error 404";
                 return View("Login");
             }
-            
+
         }
         [HttpPost]
         public ViewResult DeletePatient(int Id)
@@ -252,12 +256,12 @@ namespace EAD_Project.Controllers
         }
 
         [HttpPost]
-        public ViewResult uploadPatientReport(List<IFormFile> postedFiles,int PatientId)
+        public ViewResult uploadPatientReport(List<IFormFile> postedFiles, int PatientId)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
                 ReportsRepository repo = new ReportsRepository();
-                ViewData["AdminUserName"]= HttpContext.Request.Cookies["AdminUserName"];
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
                 string wwwPath = this.Environment.WebRootPath;
                 string path = Path.Combine(wwwPath, "Uploads");
                 if (!Directory.Exists(path))
@@ -267,7 +271,7 @@ namespace EAD_Project.Controllers
 
                 foreach (var file in postedFiles)
                 {
-                    
+
                     var fileName = Path.GetFileName(file.FileName);
                     var pathWithFileName = Path.Combine(path, fileName);
                     using (FileStream stream = new FileStream(pathWithFileName, FileMode.Create))
@@ -277,7 +281,7 @@ namespace EAD_Project.Controllers
                             ViewData["Msg"] = "File Not Uploaded";
                             return View("Index");
                         }
-                            
+
                         file.CopyTo(stream);
                         ViewBag.Message = "file uploaded successfully";
                     }
@@ -292,6 +296,14 @@ namespace EAD_Project.Controllers
             //return View();
 
         }
+        public string CurrentAdmin()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                return HttpContext.Request.Cookies["AdminUserName"];
+            }
+            else return "No User found";
 
+        }
     }
 }

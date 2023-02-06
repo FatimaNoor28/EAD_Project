@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EAD_Project.Models;
 
-public partial class Patient
+public partial class Patient:FullAudinModel
 {
     public int Id { get; set; }
     public string CNIC { get; set; }

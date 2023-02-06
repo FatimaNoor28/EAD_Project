@@ -11,9 +11,9 @@ namespace EAD_Project.Controllers
             return View("PatientSignUp");
         }
         [HttpPost]
-        public IActionResult PatientSignUp(string CNIC,string username, string password) {
+        public IActionResult PatientSignUp(string CNIC,string Name, string password) {
             PatientRepository pr = new PatientRepository();
-            if (pr.SignUpPatient(CNIC,username, password))
+            if (pr.SignUpPatient(CNIC,Name, password))
             {
                 ViewData["Msg"] = "You are Signed Up Successfully,LogIn to continue";
                 return View("PatientLogin");

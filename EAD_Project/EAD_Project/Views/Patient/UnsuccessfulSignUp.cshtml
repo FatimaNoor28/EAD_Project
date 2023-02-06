@@ -1,4 +1,6 @@
-﻿<html>
+﻿@using EAD_Project.Models
+@model Patient
+<html>
 <head>
     <title>UnSuccessfull Sign Up</title>
     <link rel="stylesheet" href="~/css/our.css">
@@ -12,16 +14,16 @@
                         <form id="login-form" class="form" action="/Patient/PatientSignUp" method="post">
                             <h3 class="text-center text-info marginAbove">Patient SignUp</h3>
                             <div class="form-group">
-                                <label for="CNIC" class="text-info">CNIC:</label><br>
-                                 <input type="text" pattern="^[0-9]{5}-[0-9]{7}-[0-9]{1}$" class="form-control " title="Type your CNIC like 12345-1234567-1" name="CNIC" id="CNIC" placeholder="Your CNIC" required>
+                                <label asp-for="CNIC" class="text-info"></label><br>
+                                 <input asp-for="CNIC" pattern="^[0-9]{5}-[0-9]{7}-[0-9]{1}$" class="form-control " title="Type your CNIC like 12345-1234567-1" required>
                             </div>
                             <div class="form-group">
-                                <label for="Name" class="text-info">Name:</label><br>
-                                <input type="text" name="username" id="name" class="form-control" placeholder="Your Name" required>
+                                <label asp-for="Name" class="text-info"></label><br>
+                                <input asp-for="Name" class="form-control"  required>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@@#$%^&*_=+-]).{8,12}$" title="Please enter at least 8 chars, 1 number, 1 symbol and 1 uppercase alphabet" required>
+                                <label asp-for="Password" class="text-info">Password:</label><br>
+                                <input asp-for="Password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@@#$%^&*_=+-]).{8,12}$" title="Please enter at least 8 chars, 1 number, 1 symbol and 1 uppercase alphabet" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirm_password" class="text-info">Password:</label><br>
@@ -33,7 +35,7 @@
                             </div>
 
                             <div id="register-link" class="text-right">
-                                <a href="/Patient/PatientLogin" class="text-info">Already Registered? Login here</a>
+                                <a  asp-action="PatientLogin" class="text-info">Already Registered? Login here</a>
                             </div>
 
 

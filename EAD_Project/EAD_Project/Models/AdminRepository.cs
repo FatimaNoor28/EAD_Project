@@ -68,7 +68,9 @@ namespace EAD_Project.Models
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
             List<Patient> p = db.Patients.Where(a => a.Id > 0).ToList();
+            
             return p;
         }
+        
     }
 }

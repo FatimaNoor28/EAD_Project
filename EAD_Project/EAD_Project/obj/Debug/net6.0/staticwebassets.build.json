@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1yLZxWS9BRMJsBFENXS1L2kIqwRgqD32ZNamKKgBXQw=",
+  "Hash": "k4c/dwQMpNIsQ4O3e5pWQKzunGX4a9YaR7vupwrY88Y=",
   "Source": "EAD_Project",
   "BasePath": "_content/EAD_Project",
   "Mode": "Default",
@@ -1581,6 +1581,23 @@
       "OriginalItemSpec": "wwwroot\\Media\\playstation-circle-black-and-white-icon.png"
     },
     {
+      "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (2).pdf",
+      "SourceId": "EAD_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\",
+      "BasePath": "_content/EAD_Project",
+      "RelativePath": "Uploads/Haseeb Raza (2).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Haseeb Raza (2).pdf"
+    },
+    {
       "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (4).pdf",
       "SourceId": "EAD_Project",
       "SourceType": "Discovered",
@@ -1596,6 +1613,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\Haseeb Raza (4).pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Nofil's CV.pdf",
+      "SourceId": "EAD_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\",
+      "BasePath": "_content/EAD_Project",
+      "RelativePath": "Uploads/Nofil's CV.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Nofil's CV.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Waleeds (2).pdf",
+      "SourceId": "EAD_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\",
+      "BasePath": "_content/EAD_Project",
+      "RelativePath": "Uploads/Waleeds (2).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Waleeds (2).pdf"
     }
   ]
 }
