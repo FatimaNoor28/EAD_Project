@@ -152,19 +152,18 @@ namespace EAD_Project.Controllers
 
         //[Route("/Admin/UpdatePatient", Name = "update")]
         //[HttpPost]
-        //public ViewResult UpdatePatient(int Id)
-        //{
-        //    if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
-        //    {
-        //        AdminRepository ar = new AdminRepository();
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        ViewData["Msg"] = "Login to Access this Page ,Error 404";
-        //        return View("Login");
-        //    }
-        //}
+        public ViewResult UpdatePatient(int Id)
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                return View("updateRecord",Id);
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
 
         public ViewResult updateRecord()
         {
@@ -181,7 +180,7 @@ namespace EAD_Project.Controllers
             }
         }
 
-        [HttpPost]
+      /*  [HttpPost]
         public ViewResult updateRecord(string Name, string CNIC)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
@@ -195,7 +194,7 @@ namespace EAD_Project.Controllers
                 ViewData["Msg"] = "Login to Access this Page ,Error 404";
                 return View("Login");
             }
-        }
+        }*/
         [HttpGet]
         public ViewResult AssignRoom()
         {

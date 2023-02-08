@@ -1,4 +1,6 @@
-﻿<section id="appointment" class="appointment section-bg">
+﻿@using EAD_Project.Models;
+@model Patient
+<section id="appointment" class="appointment section-bg">
     <div class="container">
 
         <div class="section-title">
@@ -6,10 +8,10 @@
             <p>Fill the attributes you want to change. Leave blank otherwise.</p>
         </div>
 
-        <form method = "post" action="updateRecord.cshtml">
+        <form method = "post" action="UpdatePatient">
             <div class="row form-row">
                 <div class="col-md-4 form-group mt-3 mt-md-0 ">
-                    <label class="label">Enter ID of patient whose record you want to update: </label>   <input type="text" name="Id" class="form-control" @Model.Id=id />
+                    <label  class="label">Enter ID of patient whose record you want to update: </label>   <input type="text" name="Id" class="form-control" @Model.Id=id />
                     
                 </div>
             </div>

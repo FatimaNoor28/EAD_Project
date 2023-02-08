@@ -113,6 +113,14 @@
       "PackagePath": "staticwebassets\\Uploads\\Waleeds (2).pdf"
     },
     {
+      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\ftma.PNG",
+      "PackagePath": "staticwebassets\\Uploads\\ftma.PNG"
+    },
+    {
+      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\myimage.jpeg",
+      "PackagePath": "staticwebassets\\Uploads\\myimage.jpeg"
+    },
+    {
       "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\css\\our.css",
       "PackagePath": "staticwebassets\\css\\our.css"
     },
