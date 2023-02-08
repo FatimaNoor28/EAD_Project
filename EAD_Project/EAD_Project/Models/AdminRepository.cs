@@ -76,7 +76,18 @@ namespace EAD_Project.Models
         public bool updatePatient(int id, string name, string cnic, string passwoord)
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
-            Patient p = db.Patients.Where(p => p.Id = id).FirstOrDefault();
+            Patient p = db.Patients.Where(p => p.Id == id).FirstOrDefault();
+            if (!name.IsNullOrEmpty())
+            {
+                p.Name = name;
+            }
+            if (!cnic.IsNullOrEmpty())
+                p.CNIC = cnic;
+            if (!passwoord.IsNullOrEmpty())
+                p.Password = passwoord;
+            if (db.SaveChanges()>0)
+                return true;
+            return false;
         }
 
     }

@@ -14,10 +14,13 @@ namespace EAD_Project.Controllers
             Environment = environment;
         }
 
-   
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult SignUpAdmin()
         {
             return View("SignUpAdmin");
         }
@@ -151,28 +154,14 @@ namespace EAD_Project.Controllers
         }
 
         //[Route("/Admin/UpdatePatient", Name = "update")]
-        //[HttpPost]
-        //public ViewResult UpdatePatient(int Id)
-        //{
-        //    if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
-        //    {
-        //        AdminRepository ar = new AdminRepository();
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        ViewData["Msg"] = "Login to Access this Page ,Error 404";
-        //        return View("Login");
-        //    }
-        //}
-
-        public ViewResult updateRecord()
+        [HttpPost]
+        public ViewResult UpdatePatient(int Id)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
-                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
-
-                return View("UpdatePatient");
+                AdminRepository ar = new AdminRepository();
+                Patient p = ar.find_Patient(Id);
+                return View("updateRecord",p);
             }
             else
             {
@@ -181,14 +170,29 @@ namespace EAD_Project.Controllers
             }
         }
 
+        public ViewResult updateRecord()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
+
+                return View();
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
+        //[Route("Speaker/{id:int}")]
         [HttpPost]
-        public ViewResult updateRecord(string Name, string CNIC)
+        public ViewResult updateRecord(int Id, string Name, string CNIC, string Password)
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
                 AdminRepository ar = new AdminRepository();
-                ar.updatePatient(id, Name, CNIC);
-                return View();
+                ar.updatePatient(Id, Name, CNIC, Password);
+                return View("Index",Id);
             }
             else
             {
