@@ -1,0 +1,30 @@
+networks:
+  ead_project-network: {}
+services:
+  ead_project:
+    build:
+      context: C:\Users\Solution Technology\source\EAD_Project\EAD_Project\EAD_Project
+      dockerfile: EAD_Project/Dockerfile
+    container_name: hospital-management-system
+    depends_on:
+      ead_projectdb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DB_HOST: ead_projectdb
+      DB_MSSQL_SA_PASSWORD: password@1234#
+      DB_NAME: HospitalSystem
+    image: eadproject
+    networks:
+      ead_project-network: {}
+    ports:
+    - target: 80
+  ead_projectdb:
+    container_name: hospital-management-system-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: password@1234#
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    networks:
+      ead_project-network: {}
+version: '3.4'

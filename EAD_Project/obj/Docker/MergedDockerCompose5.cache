@@ -1,0 +1,28 @@
+services:
+  ead_project:
+    build:
+      context: C:\Users\Solution Technology\source\EAD_Project\EAD_Project\EAD_Project
+      dockerfile: EAD_Project/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: EAD_Project
+    container_name: EAD_Project
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: eadproject
+    labels:
+      com.microsoft.visual-studio.project-name: EAD_Project
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/EAD_Project.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - target: 80
+    tty: true
+    volumes:
+    - C:\Users\Solution Technology\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Solution Technology\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Solution Technology\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'

@@ -133,7 +133,7 @@ namespace EAD_Project.Controllers
                 return View("Login");
             }
         }
-        [HttpGet]
+
         public ViewResult UpdatePatient()
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
@@ -149,12 +149,45 @@ namespace EAD_Project.Controllers
             }
 
         }
-        [HttpPost]
-        public ViewResult UpdatePatient(int Id, string Name, string CNIC, string PhoneNum, string Doctor, int RoomNo)
+
+        //[Route("/Admin/UpdatePatient", Name = "update")]
+        //[HttpPost]
+        //public ViewResult UpdatePatient(int Id)
+        //{
+        //    if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+        //    {
+        //        AdminRepository ar = new AdminRepository();
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        ViewData["Msg"] = "Login to Access this Page ,Error 404";
+        //        return View("Login");
+        //    }
+        //}
+
+        public ViewResult updateRecord()
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
 
+                return View("UpdatePatient");
+            }
+            else
+            {
+                ViewData["Msg"] = "Login to Access this Page ,Error 404";
+                return View("Login");
+            }
+        }
+
+        [HttpPost]
+        public ViewResult updateRecord(string Name, string CNIC)
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
+            {
+                AdminRepository ar = new AdminRepository();
+                ar.updatePatient(id, Name, CNIC);
                 return View();
             }
             else

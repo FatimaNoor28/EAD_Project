@@ -1,0 +1,52 @@
+networks:
+  ead_project-network: {}
+services:
+  ead_project:
+    build:
+      context: C:\Users\Solution Technology\source\EAD_Project\EAD_Project\EAD_Project
+      dockerfile: EAD_Project/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: EAD_Project
+      target: base
+    container_name: EAD_Project
+    depends_on:
+      ead_projectdb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DB_HOST: ead_projectdb
+      DB_MSSQL_SA_PASSWORD: password@1234#
+      DB_NAME: HospitalSystem
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: ''
+    image: eadproject:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/net6.0/EAD_Project.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      ead_project-network: {}
+    ports:
+    - target: 80
+    tty: true
+    volumes:
+    - C:\Users\Solution Technology\source\EAD_Project\EAD_Project\EAD_Project\EAD_Project:/app:rw
+    - C:\Users\Solution Technology\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Solution Technology\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Solution Technology\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\Solution Technology\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Solution Technology\source\EAD_Project\EAD_Project\EAD_Project:/src:rw
+  ead_projectdb:
+    container_name: hospital-management-system-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: password@1234#
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    networks:
+      ead_project-network: {}
+version: '3.4'

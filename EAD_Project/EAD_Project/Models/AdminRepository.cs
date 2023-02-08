@@ -68,9 +68,16 @@ namespace EAD_Project.Models
         {
             HospitalManagementSystemContext db = new HospitalManagementSystemContext();
             List<Patient> p = db.Patients.Where(a => a.Id > 0).ToList();
-            
+
             return p;
+
         }
-        
+
+        public bool updatePatient(int id, string name, string cnic, string passwoord)
+        {
+            HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+            Patient p = db.Patients.Where(p => p.Id = id).FirstOrDefault();
+        }
+
     }
 }
