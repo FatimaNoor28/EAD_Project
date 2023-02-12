@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EADProject.Migrations
 {
     /// <inheritdoc />
-    public partial class def : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -95,7 +95,18 @@ namespace EADProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reports_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reports_PatientId",
+                table: "Reports",
+                column: "PatientId");
         }
 
         /// <inheritdoc />
@@ -111,10 +122,10 @@ namespace EADProject.Migrations
                 name: "Doctors");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "Reports");
 
             migrationBuilder.DropTable(
-                name: "Reports");
+                name: "Patients");
         }
     }
 }

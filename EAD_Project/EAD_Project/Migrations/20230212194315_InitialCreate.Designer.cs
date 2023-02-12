@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EADProject.Migrations
 {
     [DbContext(typeof(HospitalManagementSystemContext))]
-    [Migration("20230208181648_def")]
-    partial class def
+    [Migration("20230212194315_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,7 +169,25 @@ namespace EADProject.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PatientId");
+
                     b.ToTable("Reports");
+                });
+
+            modelBuilder.Entity("EAD_Project.Models.Reports", b =>
+                {
+                    b.HasOne("EAD_Project.Models.Patient", "Patient")
+                        .WithMany("reports")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("EAD_Project.Models.Patient", b =>
+                {
+                    b.Navigation("reports");
                 });
 #pragma warning restore 612, 618
         }

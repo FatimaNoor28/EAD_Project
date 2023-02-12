@@ -7,13 +7,13 @@
 </head>
 
 <body>
-    <h3 class="text-center text-white pt-5">@ViewData["Msg"]</h3>
-    <h3 class="text-center text-white pt-5"> @Model</h3>
+   
     <section id="services" class="services">
         <div class="container-fluid">
 
             <div class="section-title">
                 <h2>Services</h2>
+                 <h3 class="text-center text-black pt-5"> @ViewData["Msg"]</h3>
             </div>
 
             <div class="row">
@@ -69,11 +69,14 @@
             </div>
         </div>
     </section>
-
-    @section LoginReplacement
+    @if (@ViewData["AdminUserName"] != null)
+    {
+        @section LoginReplacement
         {
 
-                                   <h>  @ViewData["AdminUserName"] </h>
+                                       <h>  @ViewData["AdminUserName"] </h>
     }
+    }
+    
 </body>
 </html>

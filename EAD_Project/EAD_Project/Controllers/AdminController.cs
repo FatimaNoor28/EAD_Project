@@ -190,9 +190,12 @@ namespace EAD_Project.Controllers
         {
             if (HttpContext.Request.Cookies.ContainsKey("Cookie") && HttpContext.Request.Cookies.ContainsKey("UserType") && (HttpContext.Request.Cookies["UserType"].Equals("Admin")))
             {
+                ViewData["AdminUserName"] = HttpContext.Request.Cookies["AdminUserName"];
                 AdminRepository ar = new AdminRepository();
                 ar.updatePatient(Id, Name, CNIC, Password);
-                return View("Index",Id);
+                ViewData["Msg"] = "Patient Id:"+Id.ToString()+" is Updated";
+                
+                return View("Index");
             }
             else
             {

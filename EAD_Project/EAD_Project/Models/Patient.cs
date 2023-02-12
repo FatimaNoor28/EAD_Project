@@ -12,6 +12,6 @@ public partial class Patient:FullAudinModel
 
     public string? Password { get; set; }
 
-    
+   public ICollection<Reports>? reports { get; set; }
 
 }
