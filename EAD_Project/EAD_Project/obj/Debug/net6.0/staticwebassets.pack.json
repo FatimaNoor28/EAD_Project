@@ -97,34 +97,6 @@
       "PackagePath": "staticwebassets\\Media\\playstation-circle-black-and-white-icon.png"
     },
     {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (2).pdf",
-      "PackagePath": "staticwebassets\\Uploads\\Haseeb Raza (2).pdf"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (4).pdf",
-      "PackagePath": "staticwebassets\\Uploads\\Haseeb Raza (4).pdf"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Nofil's CV.pdf",
-      "PackagePath": "staticwebassets\\Uploads\\Nofil's CV.pdf"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Waleeds (2).pdf",
-      "PackagePath": "staticwebassets\\Uploads\\Waleeds (2).pdf"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\diagnostics-11-01473 (1).pdf",
-      "PackagePath": "staticwebassets\\Uploads\\diagnostics-11-01473 (1).pdf"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\ftma.PNG",
-      "PackagePath": "staticwebassets\\Uploads\\ftma.PNG"
-    },
-    {
-      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\myimage.jpeg",
-      "PackagePath": "staticwebassets\\Uploads\\myimage.jpeg"
-    },
-    {
       "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\css\\our.css",
       "PackagePath": "staticwebassets\\css\\our.css"
     },
