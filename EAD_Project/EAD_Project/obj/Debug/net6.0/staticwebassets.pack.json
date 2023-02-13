@@ -97,6 +97,14 @@
       "PackagePath": "staticwebassets\\Media\\playstation-circle-black-and-white-icon.png"
     },
     {
+      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (2).pdf",
+      "PackagePath": "staticwebassets\\Uploads\\Haseeb Raza (2).pdf"
+    },
+    {
+      "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\diagnostics-11-01473 (1).pdf",
+      "PackagePath": "staticwebassets\\Uploads\\diagnostics-11-01473 (1).pdf"
+    },
+    {
       "Id": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\css\\our.css",
       "PackagePath": "staticwebassets\\css\\our.css"
     },

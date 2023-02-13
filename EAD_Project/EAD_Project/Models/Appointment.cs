@@ -8,8 +8,9 @@ public partial class Appointment
     public int AppointmentId { get; set; }
 
     public string? DoctorName { get; set; }
+    public Patient Patient { get; set; }
+    public int PatientId { get; set; }
 
-    public int? PatientId { get; set; }
 
     public int  Date { get; set; }
 

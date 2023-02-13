@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EADProject.Migrations
 {
     [DbContext(typeof(HospitalManagementSystemContext))]
-    [Migration("20230212194315_InitialCreate")]
+    [Migration("20230213184519_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -70,7 +70,7 @@ namespace EADProject.Migrations
                     b.Property<int>("Month")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNo")
@@ -81,6 +81,8 @@ namespace EADProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AppointmentId");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("Appointments");
                 });
@@ -174,6 +176,17 @@ namespace EADProject.Migrations
                     b.ToTable("Reports");
                 });
 
+            modelBuilder.Entity("EAD_Project.Models.Appointment", b =>
+                {
+                    b.HasOne("EAD_Project.Models.Patient", "Patient")
+                        .WithMany("appointments")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("EAD_Project.Models.Reports", b =>
                 {
                     b.HasOne("EAD_Project.Models.Patient", "Patient")
@@ -187,6 +200,8 @@ namespace EADProject.Migrations
 
             modelBuilder.Entity("EAD_Project.Models.Patient", b =>
                 {
+                    b.Navigation("appointments");
+
                     b.Navigation("reports");
                 });
 #pragma warning restore 612, 618

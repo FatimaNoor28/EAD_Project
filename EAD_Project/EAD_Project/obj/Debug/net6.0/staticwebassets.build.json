@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YzvwBKasjmV71BF29JPP+8gfhbfYv1b6pcb5EcJJSUU=",
+  "Hash": "CsiIg7bEI6lP2iYF8isvHIrAXH6h8Yr/ri09VniVL94=",
   "Source": "EAD_Project",
   "BasePath": "_content/EAD_Project",
   "Mode": "Default",
@@ -1579,6 +1579,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Media\\playstation-circle-black-and-white-icon.png"
+    },
+    {
+      "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\diagnostics-11-01473 (1).pdf",
+      "SourceId": "EAD_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\",
+      "BasePath": "_content/EAD_Project",
+      "RelativePath": "Uploads/diagnostics-11-01473 (1).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\diagnostics-11-01473 (1).pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\Uploads\\Haseeb Raza (2).pdf",
+      "SourceId": "EAD_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hasee\\OneDrive\\Documents\\GitHub\\EAD_Project\\EAD_Project\\EAD_Project\\wwwroot\\",
+      "BasePath": "_content/EAD_Project",
+      "RelativePath": "Uploads/Haseeb Raza (2).pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Haseeb Raza (2).pdf"
     }
   ]
 }
