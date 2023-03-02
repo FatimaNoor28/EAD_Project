@@ -5,6 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EAD_Project.Models;
 public partial class HospitalManagementSystemContext : DbContext {
+    public HospitalManagementSystemContext()
+    {
+        Database.Migrate();
+    }
     public  DbSet<Admin> Admins { get; set; }
 
     public  DbSet<Appointment> Appointments { get; set; }
@@ -15,7 +19,9 @@ public partial class HospitalManagementSystemContext : DbContext {
     
     public DbSet<Reports> Reports { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-       => options.UseSqlServer($"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HospitalManagementSystem;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+       => options.UseSqlServer(@"Server = localhost, 1440; Database = master; User = sa; Password =\r\nDocker123!;");
+           
+           //$"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HospitalManagementSystem;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
     public override int SaveChanges()
     {
         ProccessSave();
